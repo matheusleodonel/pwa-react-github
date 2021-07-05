@@ -35,7 +35,7 @@ const Following = () => {
                 }
                 console.log(error)
             })
-    }, [])
+    }, [findUser.login])
 
     return (
         <div>

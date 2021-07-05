@@ -34,7 +34,7 @@ const DetailUser = () => {
                 }
                 console.log(error)
             })
-    }, [])
+    }, [login])
 
     return (
         <div>
@@ -64,7 +64,7 @@ const DetailUser = () => {
                 </div>
             </TopDetail>
             <Avatar>
-                <img src={detailUser.avatar_url}></img>
+                <img alt="Avatar de Usuário" src={detailUser.avatar_url}></img>
             </Avatar>
             <PessoalInfos>
                 <div>

@@ -35,7 +35,7 @@ const Followers = () => {
                 }
                 console.log(error)
             })
-    }, [])
+    }, [findUser.login])
 
     return (
         <div>

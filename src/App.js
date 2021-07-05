@@ -16,6 +16,7 @@ import DetailUser from './Followers/DetailUser';
 
 function App() {
 
+  /* Rotas que serão utilizadas na aplicação */
   return (
     <div className="App">
       <Router>

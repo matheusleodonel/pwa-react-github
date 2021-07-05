@@ -41,3 +41,11 @@ export const Icon = styled.div`
     width: 100%;
     margin-bottom: 40px;
 `
+export const ReqField = styled.div`
+    /* display: flex; */
+    position: absolute;
+    color: #EB2D2D;
+    font-size: small;
+    padding: 58px 0 0 0;
+    left: 220px;
+`

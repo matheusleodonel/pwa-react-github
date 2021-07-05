@@ -30,7 +30,7 @@ const Home = () => {
                 </div>
             </TopPage>
             <Avatar>
-                <img src={findUser.avatar_url}></img>
+                <img alt="Avatar de Usuário" src={findUser.avatar_url}></img>
             </Avatar>
             <PessoalInfos>
                 <div>
