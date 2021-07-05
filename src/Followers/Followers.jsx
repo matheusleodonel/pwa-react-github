@@ -5,6 +5,10 @@ import axios from 'axios'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+
+import { TopPage, FollowerData} from './Followers.style';
+
 
 const Followers = () => {
     const findUser = useSelector(state => state.user)
@@ -34,21 +38,38 @@ const Followers = () => {
 
     return (
         <div>
-            <div>
+            <TopPage>
                 <div>
-                    <Link to="/home">Voltar</Link>
+                    <Link to="/home"><ArrowBackIcon
+                        style={{
+                            position: "absolute",
+                            left: '6px',
+                            top: '20px',
+                            color: "#FFFFFF"
+                        }}
+                    /></Link>
                 </div>
                 <div>
                     {findUser.followers} Seguidores
                 </div>
-            </div>
+            </TopPage>
             <div>
                 <div>
                     {
                         followers && followers.map(users => {
                             const { id, login, avatar_url } = users
                             return (
-                                <li key={id}><img alt={login} src={avatar_url}></img> #{login}</li>
+                                <FollowerData key={id}>
+                                    <div>
+                                        <img alt={login} src={avatar_url} />
+                                    </div>
+                                    <div>
+                                        #{login}
+                                    </div>
+                                    <div>
+                                        <ArrowForwardIcon />
+                                    </div>
+                                </FollowerData>
                             )
                         })
                     }
