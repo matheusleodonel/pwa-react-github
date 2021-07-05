@@ -1,22 +1,44 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import { Link, useParams } from 'react-router-dom';
 import {
     TopPage,
     Avatar,
     Menu,
     PessoalInfos,
-} from './Home.style';
+} from '../Home/Home.style';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-const Home = () => {
-    const findUser = useSelector(state => state.user)
+
+const DetailFollower = () => {
+    const [detailUser, setDetailUser] = useState("")
+    const { login } = useParams()
+
+    useEffect(() => {
+        axios
+            .get(
+                `https://api.github.com/users/${login}`
+            )
+            .then((res) => {
+                setDetailUser(res.data);
+            })
+            .catch((error) => {
+                if (error.res) {
+                    console.log(error)
+                } else if (error.request) {
+                    console.log(error)
+                } else {
+                    console.log(error)
+                }
+                console.log(error)
+            })
+    }, [])
 
     return (
         <div>
             <TopPage>
                 <div>
-                    #{findUser.login}
+                    #{detailUser.login}
                 </div>
                 <div>
                     <Link to="/">Sair  <ExitToAppIcon
@@ -28,22 +50,22 @@ const Home = () => {
                 </div>
             </TopPage>
             <Avatar>
-                <img src={findUser.avatar_url}></img>
+                <img src={detailUser.avatar_url}></img>
             </Avatar>
             <PessoalInfos>
                 <div>
-                    {findUser.name}
+                    {detailUser.name}
                 </div>
                 <div>
-                    <div>{findUser.email}</div>
-                    <div>{findUser.location}</div>
+                    <div>{detailUser.email}</div>
+                    <div>{detailUser.location}</div>
                 </div>
             </PessoalInfos>
             <Menu>
                 <div>
                     <Link to="/followers">
                         <div>
-                            {findUser.followers}
+                            {detailUser.followers}
                         </div>
                         <div>
                             Seguidores
@@ -53,7 +75,7 @@ const Home = () => {
                 <div>
                     <Link to="/following">
                         <div>
-                            {findUser.following}
+                            {detailUser.following}
                         </div>
                         <div>
                             Seguindo
@@ -63,7 +85,7 @@ const Home = () => {
                 <div>
                     <Link to="/repositories">
                         <div>
-                            {findUser.public_repos}
+                            {detailUser.public_repos}
                         </div>
                         <div>
                             Repos
@@ -76,7 +98,7 @@ const Home = () => {
                     BIO
                 </div>
                 <div>
-                    {findUser.bio}
+                    {detailUser.bio}
                 </div>
             </PessoalInfos>
         </div >
@@ -84,4 +106,4 @@ const Home = () => {
 };
 
 
-export default Home;
+export default DetailFollower;

@@ -12,7 +12,7 @@ import Home from './Home/Home';
 import Repositories from './Repositories/Repositories';
 import Followers from './Followers/Followers';
 import Following from './Following/Following';
-
+import DetailFollower from './Followers/DetailFollower';
 
 function App() {
 
@@ -24,20 +24,24 @@ function App() {
             <Login/>
           </Route>
 
-          <Route path="/home">
+          <Route exact path="/home">
             <Home/>
           </Route>
 
-          <Route path="/repositories">
+          <Route exact path="/repositories">
             <Repositories />
           </Route>
 
-          <Route path="/following">
+          <Route exact path="/following">
             <Following />
           </Route>
 
-          <Route path="/followers">
+          <Route exact path="/followers">
             <Followers />
+          </Route>
+
+          <Route exact path="/followers/user/:login">
+            <DetailFollower />
           </Route>
         </Switch>
       </Router>

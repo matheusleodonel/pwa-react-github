@@ -31,8 +31,6 @@ export const FollowerData = styled.div`
         }
     > div {
         justify-content: space-between;
-        
-        
     }
     > div:nth-child(2) {
         flex-grow: 2;

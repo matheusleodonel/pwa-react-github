@@ -1,8 +1,12 @@
 .App {
   width: 375px;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #292929;
   margin: 0 auto;
   text-align: center;
   font-family: Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
 }
