@@ -1,31 +1,30 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import axios from 'axios'
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-import { TopPage, FollowerData } from './Followers.style';
+import { TopPage, FollowerData } from '../Followers/Followers.style';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
-// Lista de seguidores do usuário principal
-const Followers = () => {
-    const findUser = useSelector(state => state.user) // 'findUser' agora contém todos os dados do usuário fornecido no login
-    const [followers, setFollowers] = useState("")
+/* Foi necessário criar um página clone para listar os usuários "Following" dos 'Followers' e 'Following', 
+    onde a API é requisitada provisóriamente */ 
+const CloneFollowing = () => {
+    const { login } = useParams() // Recebendo o login do 'Followers' ou 'Following' via o método 'Params'
+    const [following, setFollowing] = useState("")
 
     let history = useHistory() // Utilizando o método 'useHistory' para transitar pelos módulos com valor variável de login
 
-    // Para listar os seguidores, se fez necessário requisitar a API do Github localmente de maneira temporária
+    // Para listar o "following", se fez necessário requisitar a API do Github localmente de maneira temporária
     useEffect(() => {
         axios
             .get(
-                `https://api.github.com/users/${findUser.login}/followers` // Endereço da lista de seguidores de acordo com o login do usuário
+                `https://api.github.com/users/${login}/following` // Endereço da lista de repositórios de acordo com o login do usuário
             )
             .then((res) => {
-                setFollowers(res.data); // Recebendo a lista de seguidores
-
+                setFollowing(res.data); // Recebendo a lista de "following"
             })
             .catch((error) => {
                 if (error.res) {
@@ -37,7 +36,7 @@ const Followers = () => {
                 }
                 console.log(error)
             })
-    }, [findUser.login])
+    }, [login])
 
     return (
         <div>
@@ -54,16 +53,16 @@ const Followers = () => {
                     </Link>
                 </div>
                 <div>
-                    {findUser.followers} seguidores
+                    {login.following} seguindo
                 </div>
             </TopPage>
             <div>
                 <div>
                     {
-                        followers && followers.map(users => {
+                        following && following.map(users => {
                             const { id, login, avatar_url } = users
                             return (
-                                <FollowerData key={id} onClick={() => history.push(`/followers/user/${login}`)}>
+                                <FollowerData key={id} onClick={() => history.push(`/following/user/${login}`)}>
                                     <div>
                                         <img alt={login} src={avatar_url} />
                                     </div>
@@ -83,4 +82,4 @@ const Followers = () => {
     );
 }
 
-export default Followers;
+export default CloneFollowing;

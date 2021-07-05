@@ -1,6 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios'
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -16,18 +15,21 @@ import StarOutlineIcon from '@material-ui/icons/StarOutline';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import LockIcon from '@material-ui/icons/Lock';
 
-const Repositories = () => {
-    const findUser = useSelector(state => state.user) // 'findUser' agora contém todos os dados do usuário fornecido no login
+/* Foi necessário criar um página clone para listar os repositórios dos 'Followers' e 'Following', 
+    onde a API é requisitada provisóriamente */ 
+const CloneRepositories = () => {
+    const { login } = useParams() // Recebendo o login do 'Follower' ou 'Following' via o método 'Params'
     const [repositories, setRepositories] = useState("")
 
     // Para listar os reposiórios, se fez necessário requisitar a API do Github localmente de maneira temporária
     useEffect(() => { //Utilizando o useEffect para evitar looping
         axios
             .get(
-                `https://api.github.com/users/${findUser.login}/repos` // Endereço da lista de repositórios de acordo com o login do usuário
+                `https://api.github.com/users/${login}/repos` // Endereço da lista de repositórios de acordo com o login do usuário
             )
             .then((res) => {
                 setRepositories(res.data); // Recebendo a lista de repositórios
+
             })
             .catch((error) => {
                 if (error.res) {
@@ -39,8 +41,8 @@ const Repositories = () => {
                 }
                 console.log(error)
             })
-    }, [findUser.login])
- 
+    }, [login])
+
     return (
         <div>
             <TopPage>
@@ -55,7 +57,7 @@ const Repositories = () => {
                     /></Link>
                 </div>
                 <div>
-                    {findUser.public_repos} repositórios
+                    {login.public_repos} repositórios
                 </div>
             </TopPage>
             <Container>
@@ -63,6 +65,7 @@ const Repositories = () => {
                     repositories && repositories.map(repos => { // Listando os repositórios de acordo com o protótipo fornecido
                         const { id, name, description, stargazers_count } = repos
                         return (
+
                             <ReposList key={id}>
                                 <div>
                                     {name}
@@ -110,4 +113,4 @@ const Repositories = () => {
 }
 
 
-export default Repositories;
+export default CloneRepositories;

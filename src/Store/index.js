@@ -5,10 +5,12 @@ import User from './Ducks/User'
 
 const sagaMiddleware = createSagaMiddleware()
 
+/* Lista de reducers (nesse caso, utilizei apenas o reducer com os atributos do usuário digitado no login) */
 const reducer = combineReducers({
     user: User,
 })
 
+// Configurando a store utilizando o middleware
 const store = configureStore({
     reducer,
     middleware: [...getDefaultMiddleware({ thunk: false }), sagaMiddleware]

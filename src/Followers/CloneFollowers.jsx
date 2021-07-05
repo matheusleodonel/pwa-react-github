@@ -1,6 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import axios from 'axios'
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -10,22 +9,22 @@ import { TopPage, FollowerData } from './Followers.style';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
-// Lista de seguidores do usuário principal
-const Followers = () => {
-    const findUser = useSelector(state => state.user) // 'findUser' agora contém todos os dados do usuário fornecido no login
+/* Foi necessário criar um página clone para listar os seguidores dos 'Followers' e 'Following', 
+    onde a API é requisitada provisóriamente */
+const CloneFollowers = () => {
+    const { login } = useParams() // Recebendo o login do 'Followers' ou 'Following' via o método 'Params'
     const [followers, setFollowers] = useState("")
 
     let history = useHistory() // Utilizando o método 'useHistory' para transitar pelos módulos com valor variável de login
 
     // Para listar os seguidores, se fez necessário requisitar a API do Github localmente de maneira temporária
-    useEffect(() => {
+    useEffect(() => { //Utilizando o useEffect para evitar looping
         axios
             .get(
-                `https://api.github.com/users/${findUser.login}/followers` // Endereço da lista de seguidores de acordo com o login do usuário
+                `https://api.github.com/users/${login}/followers` // Endereço da lista de seguidores, de acordo com o login do usuário
             )
             .then((res) => {
                 setFollowers(res.data); // Recebendo a lista de seguidores
-
             })
             .catch((error) => {
                 if (error.res) {
@@ -37,7 +36,7 @@ const Followers = () => {
                 }
                 console.log(error)
             })
-    }, [findUser.login])
+    }, [login])
 
     return (
         <div>
@@ -54,7 +53,7 @@ const Followers = () => {
                     </Link>
                 </div>
                 <div>
-                    {findUser.followers} seguidores
+                    {login.followers} seguidores
                 </div>
             </TopPage>
             <div>
@@ -83,4 +82,4 @@ const Followers = () => {
     );
 }
 
-export default Followers;
+export default CloneFollowers;
