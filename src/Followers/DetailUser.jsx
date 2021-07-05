@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 
 import {
     Avatar,
@@ -15,6 +15,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 const DetailUser = () => {
     const [detailUser, setDetailUser] = useState("")
     const { login } = useParams()
+
+    let history = useHistory();
 
     useEffect(() => {
         axios
@@ -77,34 +79,34 @@ const DetailUser = () => {
             </PessoalInfos>
             <Menu>
                 <div>
-                    <Link to="/followers">
+                    <a onClick={() => history.push(`/followers/${login}`)}>
                         <div>
                             {detailUser.followers}
                         </div>
                         <div>
                             Seguidores
                         </div>
-                    </Link>
+                    </a>
                 </div>
                 <div>
-                    <Link to="/following">
+                    <a onClick={() => history.push(`/following/${login}`)}>
                         <div>
                             {detailUser.following}
                         </div>
                         <div>
                             Seguindo
                         </div>
-                    </Link>
+                    </a>
                 </div>
                 <div>
-                    <Link to="/repositories">
+                    <a onClick={() => history.push(`/repositories/${login}`)}>
                         <div>
                             {detailUser.public_repos}
                         </div>
                         <div>
                             Repos
                         </div>
-                    </Link>
+                    </a>
                 </div>
             </Menu>
             <PessoalInfos>

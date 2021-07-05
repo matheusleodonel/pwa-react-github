@@ -13,6 +13,9 @@ import Repositories from './Repositories/Repositories';
 import Followers from './Followers/Followers';
 import Following from './Following/Following';
 import DetailUser from './Followers/DetailUser';
+import CloneFollowers from './Followers/CloneFollowers';
+import CloneFollowing from './Following/CloneFollowing';
+import CloneRepositories from './Repositories/CloneRepositories'
 
 function App() {
 
@@ -47,6 +50,18 @@ function App() {
 
           <Route exact path="/following/user/:login">
             <DetailUser />
+          </Route>
+
+          <Route exact path="/followers/:login">
+            <CloneFollowers />
+          </Route>
+          
+          <Route exact path="/following/:login">
+            <CloneFollowing />
+          </Route>
+
+          <Route exact path="/repositories/:login">
+            <CloneRepositories />
           </Route>
         </Switch>
       </Router>

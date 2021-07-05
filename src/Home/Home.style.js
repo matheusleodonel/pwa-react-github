@@ -69,6 +69,7 @@ export const Menu = styled.div`
     justify-content: space-between;
     margin: 30px 0;
     padding: 20px;
+    cursor: pointer;
     > div {
         display: flex;
         text-align: center;

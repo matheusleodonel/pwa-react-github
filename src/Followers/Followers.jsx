@@ -52,7 +52,7 @@ const Followers = () => {
                     </Link>
                 </div>
                 <div>
-                    {findUser.followers} Seguidores
+                    {findUser.followers} seguidores
                 </div>
             </TopPage>
             <div>

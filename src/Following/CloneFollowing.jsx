@@ -1,17 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import axios from 'axios'
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-import { TopPage, FollowerData } from "../Followers/Followers.style";
+import { TopPage, FollowerData } from '../Followers/Followers.style';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
-const Following = () => {
-    const findUser = useSelector(state => state.user)
+const CloneFollowing = () => {
+    const { login } = useParams()
     const [following, setFollowing] = useState("")
 
     let history = useHistory()
@@ -19,11 +18,10 @@ const Following = () => {
     useEffect(() => {
         axios
             .get(
-                `https://api.github.com/users/${findUser.login}/following`
+                `https://api.github.com/users/${login}/following`
             )
             .then((res) => {
                 setFollowing(res.data);
-
             })
             .catch((error) => {
                 if (error.res) {
@@ -35,7 +33,7 @@ const Following = () => {
                 }
                 console.log(error)
             })
-    }, [findUser.login])
+    }, [login])
 
     return (
         <div>
@@ -52,7 +50,7 @@ const Following = () => {
                     </Link>
                 </div>
                 <div>
-                    {findUser.following} seguindo
+                    {login.following} seguindo
                 </div>
             </TopPage>
             <div>
@@ -81,5 +79,4 @@ const Following = () => {
     );
 }
 
-
-export default Following;
+export default CloneFollowing;

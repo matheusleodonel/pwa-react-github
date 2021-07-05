@@ -1,29 +1,27 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import axios from 'axios'
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-import { TopPage, FollowerData } from "../Followers/Followers.style";
+import { TopPage, FollowerData } from './Followers.style';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
-const Following = () => {
-    const findUser = useSelector(state => state.user)
-    const [following, setFollowing] = useState("")
+const CloneFollowers = () => {
+    const { login } = useParams()
+    const [followers, setFollowers] = useState("")
 
     let history = useHistory()
 
     useEffect(() => {
         axios
             .get(
-                `https://api.github.com/users/${findUser.login}/following`
+                `https://api.github.com/users/${login}/followers`
             )
             .then((res) => {
-                setFollowing(res.data);
-
+                setFollowers(res.data);
             })
             .catch((error) => {
                 if (error.res) {
@@ -35,7 +33,7 @@ const Following = () => {
                 }
                 console.log(error)
             })
-    }, [findUser.login])
+    }, [login])
 
     return (
         <div>
@@ -52,16 +50,16 @@ const Following = () => {
                     </Link>
                 </div>
                 <div>
-                    {findUser.following} seguindo
+                    {login.followers} seguidores
                 </div>
             </TopPage>
             <div>
                 <div>
                     {
-                        following && following.map(users => {
+                        followers && followers.map(users => {
                             const { id, login, avatar_url } = users
                             return (
-                                <FollowerData key={id} onClick={() => history.push(`/following/user/${login}`)}>
+                                <FollowerData key={id} onClick={() => history.push(`/followers/user/${login}`)}>
                                     <div>
                                         <img alt={login} src={avatar_url} />
                                     </div>
@@ -81,5 +79,4 @@ const Following = () => {
     );
 }
 
-
-export default Following;
+export default CloneFollowers;
