@@ -12,19 +12,21 @@ import { TopDetail } from './Followers.style';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
+// Módulo criado para mostrar os detalhes de um usuário presente na lista de "Followers" ou "Following"
 const DetailUser = () => {
     const [detailUser, setDetailUser] = useState("")
-    const { login } = useParams()
+    const { login } = useParams() // Recebendo o login do 'Follower' ou 'Following' via o método 'Params'
 
-    let history = useHistory();
+    let history = useHistory(); // Utilizando o método 'useHistory' para transitar pelos módulos com valor variável de login
 
-    useEffect(() => {
+    // Para listar a "home" do usuário temporário, se fez necessário requisitar a API do Github localmente
+    useEffect(() => { //Utilizando o useEffect para evitar looping
         axios
             .get(
                 `https://api.github.com/users/${login}`
             )
             .then((res) => {
-                setDetailUser(res.data);
+                setDetailUser(res.data); // Recebendo os dados do usuário temporário
             })
             .catch((error) => {
                 if (error.res) {

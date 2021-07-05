@@ -11,8 +11,9 @@ import {
 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
+// Página inicial do usuário, onde ele terá acesso à todos os outros módulos da aplicação
 const Home = () => {
-    const findUser = useSelector(state => state.user)
+    const findUser = useSelector(state => state.user) // 'findUser' agora contém todos os dados do usuário fornecido no login
 
     return (
         <div>

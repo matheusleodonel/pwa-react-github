@@ -10,19 +10,21 @@ import { TopPage, FollowerData } from './Followers.style';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
+// Lista de seguidores do usuário principal
 const Followers = () => {
-    const findUser = useSelector(state => state.user)
+    const findUser = useSelector(state => state.user) // 'findUser' agora contém todos os dados do usuário fornecido no login
     const [followers, setFollowers] = useState("")
 
-    let history = useHistory()
+    let history = useHistory() // Utilizando o método 'useHistory' para transitar pelos módulos com valor variável de login
 
+    // Para listar os seguidores, se fez necessário requisitar a API do Github localmente de maneira temporária
     useEffect(() => {
         axios
             .get(
-                `https://api.github.com/users/${findUser.login}/followers`
+                `https://api.github.com/users/${findUser.login}/followers` // Endereço da lista de seguidores de acordo com o login do usuário
             )
             .then((res) => {
-                setFollowers(res.data);
+                setFollowers(res.data); // Recebendo a lista de seguidores
 
             })
             .catch((error) => {

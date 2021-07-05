@@ -9,19 +9,22 @@ import { TopPage, FollowerData } from './Followers.style';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
+/* Foi necessário criar um página clone para listar os seguidores dos 'Followers' e 'Following', 
+    onde a API é requisitada provisóriamente */
 const CloneFollowers = () => {
-    const { login } = useParams()
+    const { login } = useParams() // Recebendo o login do 'Followers' ou 'Following' via o método 'Params'
     const [followers, setFollowers] = useState("")
 
-    let history = useHistory()
+    let history = useHistory() // Utilizando o método 'useHistory' para transitar pelos módulos com valor variável de login
 
-    useEffect(() => {
+    // Para listar os seguidores, se fez necessário requisitar a API do Github localmente de maneira temporária
+    useEffect(() => { //Utilizando o useEffect para evitar looping
         axios
             .get(
-                `https://api.github.com/users/${login}/followers`
+                `https://api.github.com/users/${login}/followers` // Endereço da lista de seguidores, de acordo com o login do usuário
             )
             .then((res) => {
-                setFollowers(res.data);
+                setFollowers(res.data); // Recebendo a lista de seguidores
             })
             .catch((error) => {
                 if (error.res) {

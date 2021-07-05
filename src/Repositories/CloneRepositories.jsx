@@ -15,17 +15,20 @@ import StarOutlineIcon from '@material-ui/icons/StarOutline';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import LockIcon from '@material-ui/icons/Lock';
 
+/* Foi necessário criar um página clone para listar os repositórios dos 'Followers' e 'Following', 
+    onde a API é requisitada provisóriamente */ 
 const CloneRepositories = () => {
-    const { login } = useParams()
+    const { login } = useParams() // Recebendo o login do 'Follower' ou 'Following' via o método 'Params'
     const [repositories, setRepositories] = useState("")
 
-    useEffect(() => {
+    // Para listar os reposiórios, se fez necessário requisitar a API do Github localmente de maneira temporária
+    useEffect(() => { //Utilizando o useEffect para evitar looping
         axios
             .get(
-                `https://api.github.com/users/${login}/repos`
+                `https://api.github.com/users/${login}/repos` // Endereço da lista de repositórios de acordo com o login do usuário
             )
             .then((res) => {
-                setRepositories(res.data);
+                setRepositories(res.data); // Recebendo a lista de repositórios
 
             })
             .catch((error) => {
@@ -59,7 +62,7 @@ const CloneRepositories = () => {
             </TopPage>
             <Container>
                 {
-                    repositories && repositories.map(repos => {
+                    repositories && repositories.map(repos => { // Listando os repositórios de acordo com o protótipo fornecido
                         const { id, name, description, stargazers_count } = repos
                         return (
 
