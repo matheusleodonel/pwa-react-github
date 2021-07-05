@@ -4,12 +4,11 @@ import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios'
 import { useState } from 'react';
 import { useEffect } from 'react';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-
 
 import { TopPage, FollowerData } from './Followers.style';
 
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 const Followers = () => {
     const findUser = useSelector(state => state.user)
@@ -49,7 +48,8 @@ const Followers = () => {
                             top: '20px',
                             color: "#FFFFFF"
                         }}
-                    /></Link>
+                    />
+                    </Link>
                 </div>
                 <div>
                     {findUser.followers} Seguidores
@@ -61,17 +61,17 @@ const Followers = () => {
                         followers && followers.map(users => {
                             const { id, login, avatar_url } = users
                             return (
-                                    <FollowerData key={id} onClick={() => history.push(`/followers/user/${login}`)}>
-                                        <div>
-                                            <img alt={login} src={avatar_url} />
-                                        </div>
-                                        <div>
-                                            #{login}
-                                        </div>
-                                        <div>
-                                            <ArrowForwardIcon />
-                                        </div>
-                                    </FollowerData>
+                                <FollowerData key={id} onClick={() => history.push(`/followers/user/${login}`)}>
+                                    <div>
+                                        <img alt={login} src={avatar_url} />
+                                    </div>
+                                    <div>
+                                        #{login}
+                                    </div>
+                                    <div>
+                                        <ArrowForwardIcon />
+                                    </div>
+                                </FollowerData>
                             )
                         })
                     }

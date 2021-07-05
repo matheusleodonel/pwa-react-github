@@ -1,12 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import {
     TopPage,
     Avatar,
     Menu,
     PessoalInfos,
 } from './Home.style';
+
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const Home = () => {

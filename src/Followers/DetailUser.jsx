@@ -1,16 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
+
 import {
-    TopPage,
     Avatar,
     Menu,
     PessoalInfos,
 } from '../Home/Home.style';
+import { TopDetail } from './Followers.style';
+
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-
-const DetailFollower = () => {
+const DetailUser = () => {
     const [detailUser, setDetailUser] = useState("")
     const { login } = useParams()
 
@@ -36,19 +38,31 @@ const DetailFollower = () => {
 
     return (
         <div>
-            <TopPage>
+            <TopDetail>
+                <div>
+                    <div>
+                        <Link to="/home"><ArrowBackIcon
+                            style={{
+                                left: '6px',
+                                top: '20px',
+                                color: "#FFFFFF"
+                            }}
+                        />
+                        </Link>
+                    </div>
+                    <div>
+                        <Link to="/">Sair  <ExitToAppIcon
+                            style={{
+                                color: '#D03434',
+                                marginLeft: '2px'
+                            }}
+                        /></Link>
+                    </div>
+                </div>
                 <div>
                     #{detailUser.login}
                 </div>
-                <div>
-                    <Link to="/">Sair  <ExitToAppIcon
-                        style={{
-                            color: '#D03434',
-                            marginLeft: '2px'
-                        }}
-                    /></Link>
-                </div>
-            </TopPage>
+            </TopDetail>
             <Avatar>
                 <img src={detailUser.avatar_url}></img>
             </Avatar>
@@ -106,4 +120,4 @@ const DetailFollower = () => {
 };
 
 
-export default DetailFollower;
+export default DetailUser;

@@ -11,6 +11,7 @@ import {
     ReposList,
     Container
 } from './Repositories.style';
+
 import StarOutlineIcon from '@material-ui/icons/StarOutline';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import LockIcon from '@material-ui/icons/Lock';

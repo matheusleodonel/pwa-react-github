@@ -50,3 +50,33 @@ export const FollowerData = styled.div`
         }
     }
 `
+
+export const TopDetail = styled.div`
+    text-align: left;
+    color: #FFFFFF;
+    padding: 15px 10px;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #1F1F1F;
+    display: relative;
+    height: 80px;
+    > div:first-child {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    > div:nth-child(2) {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        margin-top: -20px;
+    }
+    & a {
+        color: #FFFFFF;
+        text-decoration: none;
+        font-weight: normal;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+`

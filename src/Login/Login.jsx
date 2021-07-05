@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { getUser } from "../Store/Ducks/User";
 import { useDispatch } from 'react-redux';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+
 import {
     LoginDiv,
     Input,
     Button,
     Icon,
 } from './Login.style';
+
+import GitHubIcon from '@material-ui/icons/GitHub';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 const Login = () => {
     const [login, setLogin] = useState(""); //Receber o que o usuário digitou no input

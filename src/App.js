@@ -12,7 +12,7 @@ import Home from './Home/Home';
 import Repositories from './Repositories/Repositories';
 import Followers from './Followers/Followers';
 import Following from './Following/Following';
-import DetailFollower from './Followers/DetailFollower';
+import DetailUser from './Followers/DetailUser';
 
 function App() {
 
@@ -41,7 +41,11 @@ function App() {
           </Route>
 
           <Route exact path="/followers/user/:login">
-            <DetailFollower />
+            <DetailUser />
+          </Route>
+
+          <Route exact path="/following/user/:login">
+            <DetailUser />
           </Route>
         </Switch>
       </Router>
