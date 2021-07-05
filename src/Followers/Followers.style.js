@@ -20,6 +20,7 @@ export const FollowerData = styled.div`
     padding: 15px;
     color: #FFFFFF;
     position: relative;
+    cursor: pointer;
     &::before {
             content: "";
             width: 7px;

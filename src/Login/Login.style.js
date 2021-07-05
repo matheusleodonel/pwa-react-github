@@ -9,7 +9,7 @@ export const LoginDiv = styled.div`
     flex-wrap: nowrap;
     flex-direction: column;
     overflow: hidden;
-    padding: 0 20px;
+    padding: 50% 20px;
 `
 
 export const Input = styled.input`
