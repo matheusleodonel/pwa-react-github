@@ -81,34 +81,34 @@ const DetailUser = () => {
             </PessoalInfos>
             <Menu>
                 <div>
-                    <a onClick={() => history.push(`/followers/${login}`)}>
+                    <div onClick={() => history.push(`/followers/${login}`)}>
                         <div>
                             {detailUser.followers}
                         </div>
                         <div>
                             Seguidores
                         </div>
-                    </a>
+                    </div>
                 </div>
                 <div>
-                    <a onClick={() => history.push(`/following/${login}`)}>
+                    <div onClick={() => history.push(`/following/${login}`)}>
                         <div>
                             {detailUser.following}
                         </div>
                         <div>
                             Seguindo
                         </div>
-                    </a>
+                    </div>
                 </div>
                 <div>
-                    <a onClick={() => history.push(`/repositories/${login}`)}>
+                    <div onClick={() => history.push(`/repositories/${login}`)}>
                         <div>
                             {detailUser.public_repos}
                         </div>
                         <div>
                             Repos
                         </div>
-                    </a>
+                    </div>
                 </div>
             </Menu>
             <PessoalInfos>

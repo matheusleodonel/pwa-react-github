@@ -84,7 +84,7 @@ export const Menu = styled.div`
             font-weight: bold;
         }
         & div:last-child {
-            font-size: 0.8em;
+            font-size: 0.9em;
         }
     }
 `
