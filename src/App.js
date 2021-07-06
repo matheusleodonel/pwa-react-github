@@ -12,7 +12,7 @@ import Home from './Home/Home';
 import Repositories from './Repositories/Repositories';
 import Followers from './Followers/Followers';
 import Following from './Following/Following';
-import DetailUser from './Followers/DetailUser';
+import DetailUser from './Home/DetailUser';
 import CloneFollowers from './Followers/CloneFollowers';
 import CloneFollowing from './Following/CloneFollowing';
 import CloneRepositories from './Repositories/CloneRepositories'

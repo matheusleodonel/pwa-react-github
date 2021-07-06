@@ -6,8 +6,8 @@ import {
     Avatar,
     Menu,
     PessoalInfos,
-} from '../Home/Home.style';
-import { TopDetail } from './Followers.style';
+} from './Home.style';
+import { TopDetail } from '../Followers/Followers.style';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
